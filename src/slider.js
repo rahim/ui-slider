@@ -148,13 +148,13 @@ angular.module('ui.slider', []).value('uiSliderConfig',{}).directive('uiSlider',
                 function externalValueFromInternal(val) {
                     var exMin = options['external-min'],
                         exMax = options['external-max'],
-                        exStep = options['external-step'];
+                        exStep = options['external-step'],
+                        power = options['power'];
+                    //convert from log scale to linear
+                    var linearVal = Math.pow(val, power);
                     //linear translation
-                    var unroundedExVal = exMin + (exMax-exMin) * val;
-                    //TODO: log/power translation
-                    //round the value
+                    var unroundedExVal = exMin + (exMax-exMin) * linearVal;
                     var roundedExVal = Math.round(unroundedExVal/exStep)*exStep;
-                    //then bound it
                     return bound(exMin, roundedExVal, exMax);
                 };
 
@@ -163,15 +163,16 @@ angular.module('ui.slider', []).value('uiSliderConfig',{}).directive('uiSlider',
                     // note: we also don't enforce bounds checking here
                     var exMin = options['external-min'],
                         exMax = options['external-max'],
-                        exStep = options['external-step'];
+                        exStep = options['external-step'],
+                        power = options['power'];
 
-                    //TOOD: log/power translation
-
-                    return (val - exMin) / (exMax - exMin);
+                    var linearIntVal = (val - exMin) / (exMax - exMin);
+                    var logIntVal = Math.pow(linearIntVal, 1 / power);
+                    return logIntVal;
                 };
 
                 var options = angular.extend(scope.$eval(attrs.uiLogSlider) || {}, uiSliderConfig);
-                options = angular.extend(options, {min:0, max:1, step:0.001});
+                options = angular.extend(options, {min:0, max:1, step:0.001, power:Math.E});
                 // // Object holding range values
                 // var prevRangeValues = {
                 //     min: null,
