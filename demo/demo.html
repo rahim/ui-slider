@@ -45,7 +45,7 @@
 		<div ui-slider min="0" max="50" ng-model="demoVals.sliderExample1"></div>
 		<input type="text" ng-model="demoVals.sliderExample1" />
 	</div>
-	
+
 	<div class="sliderExample">
 		<div>
 			<strong>Slider - vertical, step value 5</strong>
@@ -69,7 +69,7 @@
 			<input type="text" ng-model="demoVals.sliderExample2" />
 		</div>
 	</div>
-	
+
 	<div class="sliderExample">
 		<strong>Slider - start value 14</strong>
 		<div ui-slider min="0" max="20" ng-model="demoVals.sliderExample3"></div>
@@ -96,7 +96,7 @@
 	</div>
 
 	<h2>Examples with decimals</h2>
-	
+
 	<div class="sliderExample">
 		<strong>Slider - range values, step with decimals</strong>
 		<div ui-slider="{range: true}" min="0" max="100" step="0.01" use-decimals ng-model="demoVals.sliderExample7"></div>
@@ -135,11 +135,17 @@
 		<div id="swatch"></div>
 	</div>
 
-	
+	<div class="sliderExample">
+		<strong>Log slider</strong>
+		<strong>Slider - start value 5000, step 1000, min 1000 to max 100000</strong>
+		<div ui-log-slider min="1000" max="100000" step="1000" use-decimals ng-model="demoVals.sliderExample11"></div>
+		<input type="text" ng-model="demoVals.sliderExample11" />
+	</div>
+
 	<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
   	<script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-  	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>	
-	<script type="text/javascript" src="src/slider.js"></script>	
+  	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="src/slider.js"></script>
 	<script>
 		var app = angular.module('sliderDemoApp', ['ui.slider']);
 		app.factory('colorpicker', function () {
@@ -171,7 +177,8 @@
 				sliderExample5:     50,
 				sliderExample8:     0.34,
 				sliderExample9:     [-0.52, 0.54],
-				sliderExample10:     -0.37
+				sliderExample10:     -0.37,
+				sliderExample11:    5000
 			};
 
 			$scope.colorpicker = {
